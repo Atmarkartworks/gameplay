@@ -1,0 +1,4 @@
+include ':app'
+
+//include ':gameplay_deps'
+include ':gameplay'
