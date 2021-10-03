@@ -14,7 +14,7 @@ export JDK=/snap/android-studio/current/android-studio/jre
 export OPT0=-DCMAKE_TOOLCHAIN_FILE=$ANDK/build/cmake/android.toolchain.cmake
 export OPT1=-DCMAKE_SYSTEM_NAME=ANDROID
 export OPT2=-DANDROID=1
-export OPT3=-DANDROID_PLATFORM=28
+export OPT3=-DANDROID_PLATFORM=29
 export OPT4=-DCMAKE_BUILD_TYPE=Release
 #export OPT4=-DCMAKE_BUILD_TYPE=Debug
 

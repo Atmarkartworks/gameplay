@@ -77,8 +77,7 @@ set_target_properties( # Specifies the target library.
         # Specifies the parameter you want to define.
         PROPERTIES IMPORTED_LOCATION
         # Provides the path to the library you want to import.
-        /home/aaw/dev/gameplay3d/sampleCharacter/gameplay-deps/out/external-deps/lib/android/${ANDROID_ABI}/libgameplay-deps.a )
-#        ../../../../../gameplay-deps/out/external-deps/lib/android/${ANDROID_ABI}/libgameplay-deps.a )
+        ../../../../../gameplay-deps/out/external-deps/lib/android/${ANDROID_ABI}/libgameplay-deps.a )
 
 add_library(gameplay
         STATIC
@@ -89,20 +88,11 @@ set_target_properties( # Specifies the target library.
         PROPERTIES IMPORTED_LOCATION
         # Provides the path to the library you want to import.
 #        ../../../../../gameplay/build/intermediates/cmake/debug/obj/${ANDROID_ABI}/libgameplay.a )
-       /home/aaw/dev/gameplay3d/sampleCharacter/gameplay/build/intermediates/cmake/debug/obj/${ANDROID_ABI}/libgameplay.a )
-##        ../../../../gameplay/build/intermediates/cmake/${CMAKE_BUILD_TYPE}/obj/${ANDROID_ABI}/libgameplay.a )
+        ../../../../gameplay/build/intermediates/cmake/${CMAKE_BUILD_TYPE}/obj/${ANDROID_ABI}/libgameplay.a )
 
 
 
 target_link_libraries(native-activity
-#        gameplay
-#        gameplay-deps
-#        GLESv2
-#        EGL
-#        log
-#        android
-#        atomic
-#        )
         android
         native_app_glue
         gameplay
@@ -110,7 +100,6 @@ target_link_libraries(native-activity
         EGL
         GLESv1_CM
         GLESv2
-        OpenSLES
         log)
         
 
