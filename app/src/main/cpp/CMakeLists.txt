@@ -87,8 +87,9 @@ set_target_properties( # Specifies the target library.
         # Specifies the parameter you want to define.
         PROPERTIES IMPORTED_LOCATION
         # Provides the path to the library you want to import.
-#        ../../../../../gameplay/build/intermediates/cmake/debug/obj/${ANDROID_ABI}/libgameplay.a )
-        ../../../../gameplay/build/intermediates/cmake/${CMAKE_BUILD_TYPE}/obj/${ANDROID_ABI}/libgameplay.a )
+        ../../../../../gameplay/build/intermediates/cmake/debug/obj/${ANDROID_ABI}/libgameplay.a )
+#        ../../../../../gameplay/build/intermediates/cmake/release/obj/${ANDROID_ABI}/libgameplay.a )
+#        ../../../../gameplay/build/intermediates/cmake/${CMAKE_BUILD_TYPE}/obj/${ANDROID_ABI}/libgameplay.a )
 
 
 
