@@ -1,4 +1,4 @@
-include ':app'
+include ':app-character'
 
 //include ':gameplay_deps'
 include ':gameplay'
