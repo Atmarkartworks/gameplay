@@ -827,7 +827,6 @@ static int lua_Game_getAspectRatio(lua_State* state)
 
 static int lua_Game_getAudioController(lua_State* state)
 {
-#if 0
     // Get the number of parameters.
     int paramCount = lua_gettop(state);
 
@@ -867,13 +866,11 @@ static int lua_Game_getAudioController(lua_State* state)
             break;
         }
     }
-#endif    
     return 0;
 }
 
 static int lua_Game_getAudioListener(lua_State* state)
 {
-#if 0
     // Get the number of parameters.
     int paramCount = lua_gettop(state);
 
@@ -913,7 +910,6 @@ static int lua_Game_getAudioListener(lua_State* state)
             break;
         }
     }
-#endif    
     return 0;
 }
 
@@ -2520,8 +2516,8 @@ void luaRegister_Game()
         {"getAccelerometerValues", lua_Game_getAccelerometerValues},
         {"getAnimationController", lua_Game_getAnimationController},
         {"getAspectRatio", lua_Game_getAspectRatio},
-//        {"getAudioController", lua_Game_getAudioController},
-//        {"getAudioListener", lua_Game_getAudioListener},
+        {"getAudioController", lua_Game_getAudioController},
+        {"getAudioListener", lua_Game_getAudioListener},
         {"getConfig", lua_Game_getConfig},
         {"getFrameRate", lua_Game_getFrameRate},
         {"getGamepad", lua_Game_getGamepad},

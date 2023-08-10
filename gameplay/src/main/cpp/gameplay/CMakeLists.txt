@@ -35,14 +35,14 @@ set(GAMEPLAY_SRC
     src/AnimationTarget.h
     src/AnimationValue.cpp
     src/AnimationValue.h
-#    src/AudioBuffer.cpp
-#    src/AudioBuffer.h
-#    src/AudioController.cpp
-#    src/AudioController.h
-#    src/AudioListener.cpp
-#    src/AudioListener.h
-#    src/AudioSource.cpp
-#    src/AudioSource.h
+    src/AudioBuffer.cpp
+    src/AudioBuffer.h
+    src/AudioController.cpp
+    src/AudioController.h
+    src/AudioListener.cpp
+    src/AudioListener.h
+    src/AudioSource.cpp
+    src/AudioSource.h
     src/Base.h
     src/BoundingBox.cpp
     src/BoundingBox.h
@@ -284,14 +284,14 @@ set(GAMEPLAY_LUA
     src/lua/lua_AnimationTarget.h
     src/lua/lua_AnimationValue.cpp
     src/lua/lua_AnimationValue.h
-#    src/lua/lua_AudioBuffer.cpp
-#    src/lua/lua_AudioBuffer.h
-#    src/lua/lua_AudioController.cpp
-#    src/lua/lua_AudioController.h
-#    src/lua/lua_AudioListener.cpp
-#    src/lua/lua_AudioListener.h
-#    src/lua/lua_AudioSource.cpp
-#    src/lua/lua_AudioSource.h
+    src/lua/lua_AudioBuffer.cpp
+    src/lua/lua_AudioBuffer.h
+    src/lua/lua_AudioController.cpp
+    src/lua/lua_AudioController.h
+    src/lua/lua_AudioListener.cpp
+    src/lua/lua_AudioListener.h
+    src/lua/lua_AudioSource.cpp
+    src/lua/lua_AudioSource.h
     src/lua/lua_BoundingBox.cpp
     src/lua/lua_BoundingBox.h
     src/lua/lua_BoundingSphere.cpp
@@ -589,11 +589,14 @@ target_include_directories(gameplay PRIVATE
         ${ANDROID_NDK}/sources/android/native_app_glue
         )
 
+# count decrement : add_subdirectory()
+set( OUTPUT_DIR ${PROJECT_SOURCE_DIR}/../../../../jniLibs/${ANDROID_ABI} )
 
 set_target_properties(gameplay PROPERTIES
     OUTPUT_NAME "gameplay"
     CLEAN_DIRECT_OUTPUT 1
     VERSION ${GAMEPLAY_VERSION}
+    ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}
 )
 
 

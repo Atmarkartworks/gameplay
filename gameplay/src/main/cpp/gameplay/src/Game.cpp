@@ -58,21 +58,13 @@ public:
         return "GameScriptTarget";
     }
 };
-/*
-Game::Game()
-            : _initialized(false), _state(UNINITIALIZED), _pausedCount(0),
-              _frameLastFPS(0), _frameCount(0), _frameRate(0), _width(0), _height(0),
-              _clearDepth(1.0f), _clearStencil(0), _properties(NULL),
-              _animationController(NULL), _audioController(NULL),
-              _physicsController(NULL), _aiController(NULL), _audioListener(NULL),
-              _timeEvents(NULL), _scriptController(NULL), _scriptTarget(NULL)
-*/
+
 Game::Game()
     : _initialized(false), _state(UNINITIALIZED), _pausedCount(0),
       _frameLastFPS(0), _frameCount(0), _frameRate(0), _width(0), _height(0),
       _clearDepth(1.0f), _clearStencil(0), _properties(NULL),
-      _animationController(NULL), /*_audioController(NULL),*/
-      _physicsController(NULL), _aiController(NULL), /*_audioListener(NULL), */
+      _animationController(NULL), _audioController(NULL),
+      _physicsController(NULL), _aiController(NULL), _audioListener(NULL),
       _timeEvents(NULL), _scriptController(NULL), _scriptTarget(NULL)
 {
     GP_ASSERT(__gameInstance == NULL);
@@ -175,8 +167,8 @@ bool Game::startup()
     _animationController = new AnimationController();
     _animationController->initialize();
 
-//    _audioController = new AudioController();
-//    _audioController->initialize();
+    _audioController = new AudioController();
+    _audioController->initialize();
 
     _physicsController = new PhysicsController();
     _physicsController->initialize();
@@ -241,7 +233,7 @@ void Game::shutdown()
     if (_state != UNINITIALIZED)
     {
         GP_ASSERT(_animationController);
-        //GP_ASSERT(_audioController);
+        GP_ASSERT(_audioController);
         GP_ASSERT(_physicsController);
         GP_ASSERT(_aiController);
 
@@ -270,8 +262,8 @@ void Game::shutdown()
         _animationController->finalize();
         SAFE_DELETE(_animationController);
 
-//        _audioController->finalize();
-//        SAFE_DELETE(_audioController);
+        _audioController->finalize();
+        SAFE_DELETE(_audioController);
 
         _physicsController->finalize();
         SAFE_DELETE(_physicsController);
@@ -285,7 +277,7 @@ void Game::shutdown()
         // Note: we do not clean up the script controller here
         // because users can call Game::exit() from a script.
 
-//        SAFE_DELETE(_audioListener);
+        SAFE_DELETE(_audioListener);
 
         FrameBuffer::finalize();
         RenderState::finalize();
@@ -301,13 +293,13 @@ void Game::pause()
     if (_state == RUNNING)
     {
         GP_ASSERT(_animationController);
-//        GP_ASSERT(_audioController);
+        GP_ASSERT(_audioController);
         GP_ASSERT(_physicsController);
         GP_ASSERT(_aiController);
         _state = PAUSED;
         _pausedTimeLast = Platform::getAbsoluteTime();
         _animationController->pause();
-//        _audioController->pause();
+        _audioController->pause();
         _physicsController->pause();
         _aiController->pause();
     }
@@ -324,13 +316,13 @@ void Game::resume()
         if (_pausedCount == 0)
         {
             GP_ASSERT(_animationController);
-//            GP_ASSERT(_audioController);
+            GP_ASSERT(_audioController);
             GP_ASSERT(_physicsController);
             GP_ASSERT(_aiController);
             _state = RUNNING;
             _pausedTimeTotal += Platform::getAbsoluteTime() - _pausedTimeLast;
             _animationController->resume();
-//            _audioController->resume();
+            _audioController->resume();
             _physicsController->resume();
             _aiController->resume();
         }
@@ -385,7 +377,7 @@ void Game::frame()
     if (_state == Game::RUNNING)
     {
         GP_ASSERT(_animationController);
-//        GP_ASSERT(_audioController);
+        GP_ASSERT(_audioController);
         GP_ASSERT(_physicsController);
         GP_ASSERT(_aiController);
 
@@ -416,7 +408,7 @@ void Game::frame()
             _scriptTarget->fireScriptEvent<void>(GP_GET_SCRIPT_EVENT(GameScriptTarget, update), elapsedTime);
 
         // Audio Rendering.
-//        _audioController->update(elapsedTime);
+        _audioController->update(elapsedTime);
 
         // Graphics Rendering.
         render(elapsedTime);
@@ -467,7 +459,7 @@ void Game::renderOnce(const char* function)
 void Game::updateOnce()
 {
     GP_ASSERT(_animationController);
-//    GP_ASSERT(_audioController);
+    GP_ASSERT(_audioController);
     GP_ASSERT(_physicsController);
     GP_ASSERT(_aiController);
 
@@ -481,7 +473,7 @@ void Game::updateOnce()
     _animationController->update(elapsedTime);
     _physicsController->update(elapsedTime);
     _aiController->update(elapsedTime);
-//    _audioController->update(elapsedTime);
+    _audioController->update(elapsedTime);
     if (_scriptTarget)
         _scriptTarget->fireScriptEvent<void>(GP_GET_SCRIPT_EVENT(GameScriptTarget, update), elapsedTime);
 }
@@ -540,9 +532,6 @@ void Game::clear(ClearFlags flags, float red, float green, float blue, float alp
     clear(flags, Vector4(red, green, blue, alpha), clearDepth, clearStencil);
 }
 
-
-AudioListener* Game::getAudioListener() { return NULL; }
-/*
 AudioListener* Game::getAudioListener()
 {
     if (_audioListener == NULL)
@@ -551,7 +540,7 @@ AudioListener* Game::getAudioListener()
     }
     return _audioListener;
 }
-*/
+
 void Game::keyEvent(Keyboard::KeyEvent evt, int key)
 {
     // stub
@@ -779,9 +768,9 @@ void Game::loadConfig()
     if (_properties == NULL)
     {
         // Try to load custom config from file.
-        if (FileSystem::fileExists("game.png.config"))
+        if (FileSystem::fileExists("game.config"))
         {
-            _properties = Properties::create("game.png.config");
+            _properties = Properties::create("game.config");
 
             // Load filesystem aliases.
             Properties* aliases = _properties->getNamespace("aliases", true);

@@ -165,56 +165,18 @@ static int getRotation()
     GP_ASSERT(clsWindowManager != NULL);
     jmethodID getDefaultDisplay = env->GetMethodID(clsWindowManager, "getDefaultDisplay", "()Landroid/view/Display;");
     GP_ASSERT(getDefaultDisplay != NULL);
-//    jobject defaultDisplay = env->CallObjectMethod(windowManager, getDefaultDisplay);
-//    GP_ASSERT(defaultDisplay != NULL);
+    jobject defaultDisplay = env->CallObjectMethod(windowManager, getDefaultDisplay);
+    GP_ASSERT(defaultDisplay != NULL);
     jclass clsDisplay = env->FindClass("android/view/Display");
     GP_ASSERT(clsDisplay != NULL);
     jmethodID getRotation = env->GetMethodID(clsDisplay, "getRotation", "()I");
     GP_ASSERT(getRotation != NULL)
-//    rotation =  env->CallIntMethod(defaultDisplay, getRotation);
+    rotation =  env->CallIntMethod(defaultDisplay, getRotation);
 
     return rotation;
 }
 
-#if 0
-// Initialized EGL resources.
-static bool initEGL() {
-        int samples = 0;
-        Properties* config = Game::getInstance()->getConfig()->getNamespace("window", true);
-        if (config)
-        {
-            samples = std::max(config->getInt("samples"), 0);
-        }
-        __multiSampling = samples > 0;
 
-
-        ndk_helper::GLContext* gl_context_ = ndk_helper::GLContext::GetInstance();
-
-        gl_context_->Init(__state->window);
-        __eglDisplay = gl_context_->GetDisplay();
-        __eglSurface = gl_context_->GetSurface();
-        __eglContext = gl_context_->GetContext();
-
-        eglQuerySurface(__eglDisplay, __eglSurface, EGL_WIDTH, &__width);
-        eglQuerySurface(__eglDisplay, __eglSurface, EGL_HEIGHT, &__height);
-
-        __orientationAngle = getRotation() * 90;
-
-
-
-        // Initialize OpenGL ES extensions.
-        __glExtensions = (const char*)glGetString(GL_EXTENSIONS);
-
-        if (strstr(__glExtensions, "GL_OES_vertex_array_object") || strstr(__glExtensions, "GL_ARB_vertex_array_object"))
-        {
-            glMapBuffer = (PFNGLMAPBUFFEROESPROC)eglGetProcAddress("glMapBuffer");
-        }
-
-    return true;
-}
-#endif
-
-#if 1
 // Initialized EGL resources.
 static bool initEGL()
 {
@@ -363,26 +325,21 @@ static bool initEGL()
     // Initialize OpenGL ES extensions.
     __glExtensions = (const char*)glGetString(GL_EXTENSIONS);
     
-    if (strstr(__glExtensions, "GL_OES_vertex_array_object") || strstr(__glExtensions, "GL_ARB_vertex_array_object") || strstr(__glExtensions, "GL_OES_map_buffer"))
+    if (strstr(__glExtensions, "GL_OES_vertex_array_object") || strstr(__glExtensions, "GL_ARB_vertex_array_object"))
     {
-//        glBindVertexArray = (PFNGLBINDVERTEXARRAYOESPROC)eglGetProcAddress("glBindVertexArrayOES");
-//        glDeleteVertexArrays = (PFNGLDELETEVERTEXARRAYSOESPROC)eglGetProcAddress("glDeleteVertexArraysOES");
-//        glGenVertexArrays = (PFNGLGENVERTEXARRAYSOESPROC)eglGetProcAddress("glGenVertexArraysOES");
-//        glIsVertexArray = (PFNGLISVERTEXARRAYOESPROC)eglGetProcAddress("glIsVertexArrayOES");
-//        glMapBuffer = (PFNGLMAPBUFFEROESPROC)eglGetProcAddress("glMapBuffer");
-//        glUnmapBuffer = (PFNGLUNMAPBUFFEROESPROC)eglGetProcAddress("glUnmapBuffer");
-    }
-    if (strstr(__glExtensions, "GL_OES_map_buffer"))
-    {
+        glBindVertexArray = (PFNGLBINDVERTEXARRAYOESPROC)eglGetProcAddress("glBindVertexArrayOES");
+        glDeleteVertexArrays = (PFNGLDELETEVERTEXARRAYSOESPROC)eglGetProcAddress("glDeleteVertexArraysOES");
+        glGenVertexArrays = (PFNGLGENVERTEXARRAYSOESPROC)eglGetProcAddress("glGenVertexArraysOES");
+        glIsVertexArray = (PFNGLISVERTEXARRAYOESPROC)eglGetProcAddress("glIsVertexArrayOES");
         glMapBuffer = (PFNGLMAPBUFFEROESPROC)eglGetProcAddress("glMapBufferOES");
         glUnmapBuffer = (PFNGLUNMAPBUFFEROESPROC)eglGetProcAddress("glUnmapBufferOES");
     }
+    
     return true;
     
 error:
     return false;
 }
-#endif
 
 static void destroyEGLSurface()
 {
@@ -1238,34 +1195,6 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd)
             {
                 initEGL();
                 __initialized = true;
-
-
-
-
-/**
- *
- * @Add 2021-Sep-30
- *
- * no whenever any call _game->run()
- *
- */
-
-                if (__accelerometerSensor != NULL)
-                {
-                    ASensorEventQueue_enableSensor(__sensorEventQueue, __accelerometerSensor);
-                    // We'd like to get 60 events per second (in microseconds).
-                    ASensorEventQueue_setEventRate(__sensorEventQueue, __accelerometerSensor, (1000L/60)*1000);
-                }
-                if (__gyroscopeSensor != NULL)
-                {
-                    ASensorEventQueue_enableSensor(__sensorEventQueue, __gyroscopeSensor);
-                    // We'd like to get 60 events per second (in microseconds).
-                    ASensorEventQueue_setEventRate(__sensorEventQueue, __gyroscopeSensor, (1000L/60)*1000);
-                }
-                if (Game::getInstance()->getState() == Game::UNINITIALIZED)
-                {
-                    Game::getInstance()->run();
-                }
             }
             break;
         case APP_CMD_TERM_WINDOW:

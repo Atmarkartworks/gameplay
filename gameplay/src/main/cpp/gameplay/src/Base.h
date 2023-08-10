@@ -34,7 +34,6 @@
 #include <chrono>
 #include "Logger.h"
 
-
 // Bring common functions from C into global namespace
 using std::memcpy;
 using std::fabs;
@@ -219,16 +218,13 @@ using std::va_list;
     extern PFNGLDELETEVERTEXARRAYSOESPROC glDeleteVertexArrays;
     extern PFNGLGENVERTEXARRAYSOESPROC glGenVertexArrays;
     extern PFNGLISVERTEXARRAYOESPROC glIsVertexArray;
-//OpenGL ES 2.0 Programming Guid P122
     extern PFNGLMAPBUFFEROESPROC glMapBuffer;
     extern PFNGLUNMAPBUFFEROESPROC glUnmapBuffer;
-
     #define GL_WRITE_ONLY GL_WRITE_ONLY_OES
     #define GL_DEPTH24_STENCIL8 GL_DEPTH24_STENCIL8_OES
     #define glClearDepth glClearDepthf
     #define OPENGL_ES
     #define GP_USE_VAO
-
 #elif WIN32
         #define WIN32_LEAN_AND_MEAN
         #define GLEW_STATIC

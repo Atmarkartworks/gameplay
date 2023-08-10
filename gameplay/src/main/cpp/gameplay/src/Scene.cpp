@@ -1,5 +1,5 @@
 #include "Base.h"
-//#include "AudioListener.h"
+#include "AudioListener.h"
 #include "Scene.h"
 #include "SceneLoader.h"
 #include "MeshSkin.h"
@@ -60,7 +60,7 @@ static bool endsWith(const char* str, const char* suffix, bool ignoreCase)
 
 
 Scene::Scene()
-    : _id(""), _activeCamera(NULL), _firstNode(NULL), _lastNode(NULL), _nodeCount(0), /* _bindAudioListenerToCamera(true), */
+    : _id(""), _activeCamera(NULL), _firstNode(NULL), _lastNode(NULL), _nodeCount(0), _bindAudioListenerToCamera(true), 
       _nextItr(NULL), _nextReset(true)
 {
     __sceneList.push_back(this);
@@ -71,13 +71,12 @@ Scene::~Scene()
     // Unbind our active camera from the audio listener
     if (_activeCamera)
     {
-#if 0
         AudioListener* audioListener = AudioListener::getInstance();
         if (audioListener && (audioListener->getCamera() == _activeCamera))
         {
             audioListener->setCamera(NULL);
         }
-#endif
+
         SAFE_RELEASE(_activeCamera);
     }
 
@@ -326,7 +325,7 @@ Node* Scene::getFirstNode() const
 {
     return _firstNode;
 }
-#if 1
+
 Camera* Scene::getActiveCamera()
 {
     return _activeCamera;
@@ -337,17 +336,16 @@ void Scene::setActiveCamera(Camera* camera)
     // Make sure we don't release the camera if the same camera is set twice.
     if (_activeCamera != camera)
     {
-//        AudioListener* audioListener = AudioListener::getInstance();
+        AudioListener* audioListener = AudioListener::getInstance();
 
         if (_activeCamera)
         {
-
             // Unbind the active camera from the audio listener
-/*            if (audioListener && (audioListener->getCamera() == _activeCamera))
+            if (audioListener && (audioListener->getCamera() == _activeCamera))
             {
                 audioListener->setCamera(NULL);
             }
-*/
+
             SAFE_RELEASE(_activeCamera);
         }
 
@@ -356,17 +354,15 @@ void Scene::setActiveCamera(Camera* camera)
         if (_activeCamera)
         {
             _activeCamera->addRef();
-/*
+
             if (audioListener && _bindAudioListenerToCamera)
             {
                 audioListener->setCamera(_activeCamera);
             }
-*/        }
+        }
     }
 }
-#endif
 
-#if 0
 void Scene::bindAudioListenerToCamera(bool bind)
 {
     if (_bindAudioListenerToCamera != bind)
@@ -379,7 +375,6 @@ void Scene::bindAudioListenerToCamera(bool bind)
         }
     }
 }
-#endif
 
 const Vector3& Scene::getAmbientColor() const
 {

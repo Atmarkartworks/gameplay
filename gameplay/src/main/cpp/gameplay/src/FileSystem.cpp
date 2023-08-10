@@ -76,11 +76,17 @@ static bool androidFileExists(const char* filePath)
     AAsset* asset = AAssetManager_open(__assetManager, filePath, AASSET_MODE_RANDOM);
     if (asset)
     {
-        int lenght = AAsset_getLength(asset);
+        //
+        // @modify 2023-Aug-9 : error: ordered comparison between pointer and zero : llvm
+        //
+        //int lenght = AAsset_getLength(asset);
+        off_t lenght = AAsset_getLength(asset);
+        bool check__ = AAsset_getLength(asset) > 0;
         AAsset_close(asset);
-        // GaGaGa
+        return check__;
+
         //return length > 0;
-        return ( length == NULL ? false : true );
+
     }
     return false;
 }

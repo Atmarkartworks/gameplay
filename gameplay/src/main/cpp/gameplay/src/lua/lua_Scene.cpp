@@ -196,7 +196,6 @@ static int lua_Scene_addRef(lua_State* state)
 
 static int lua_Scene_bindAudioListenerToCamera(lua_State* state)
 {
-#if 0
     // Get the number of parameters.
     int paramCount = lua_gettop(state);
 
@@ -228,7 +227,6 @@ static int lua_Scene_bindAudioListenerToCamera(lua_State* state)
             break;
         }
     }
-#endif    
     return 0;
 }
 
@@ -1191,7 +1189,7 @@ void luaRegister_Scene()
     {
         {"addNode", lua_Scene_addNode},
         {"addRef", lua_Scene_addRef},
-//        {"bindAudioListenerToCamera", lua_Scene_bindAudioListenerToCamera},
+        {"bindAudioListenerToCamera", lua_Scene_bindAudioListenerToCamera},
         {"findNode", lua_Scene_findNode},
         {"getActiveCamera", lua_Scene_getActiveCamera},
         {"getAmbientColor", lua_Scene_getAmbientColor},

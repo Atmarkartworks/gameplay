@@ -153,7 +153,7 @@ public:
      *
      * @param bind true if you want to the audio listener to follow the active camera's transform.
      */
-//    void bindAudioListenerToCamera(bool bind);
+    void bindAudioListenerToCamera(bool bind);
 
     /**
      * Returns the ambient color of the scene.

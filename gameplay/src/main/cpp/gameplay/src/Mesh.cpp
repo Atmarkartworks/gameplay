@@ -5,7 +5,6 @@
 #include "Model.h"
 #include "Material.h"
 
-
 namespace gameplay
 {
 

@@ -22,7 +22,7 @@ namespace gameplay
 class Scene;
 class Camera;
 class Light;
-//class AudioSource;
+class AudioSource;
 class AIAgent;
 class Drawable;
 
@@ -471,7 +471,7 @@ public:
      *
      * @return The audio source attached to this node.
      */
-//    AudioSource* getAudioSource() const;
+    AudioSource* getAudioSource() const;
 
     /**
      * Attaches an audio source to this node.
@@ -481,7 +481,7 @@ public:
      *
      * @param audio The new audio source. May be NULL.
      */
-//    void setAudioSource(AudioSource* audio);
+    void setAudioSource(AudioSource* audio);
 
     /**
      * Returns the pointer to this node's physics collision object.
@@ -739,7 +739,7 @@ protected:
     /** The light component attached to this node. */
     Light* _light;
     /** The audio source component attached to this node. */
-//    AudioSource* _audioSource;
+    AudioSource* _audioSource;
     /** The collision object component attached to this node. */
     PhysicsCollisionObject* _collisionObject;
     /** The AI agent component attached to this node. */

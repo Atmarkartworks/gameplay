@@ -7,8 +7,8 @@ plugins {
 
 android {
     compileSdk 29
-    ndkVersion '25.1.8937393'
-
+    ndkVersion '21.4.7075529'
+    //ndkVersion '22.1.7171670'
 
     defaultConfig {
         minSdkVersion 14
@@ -18,11 +18,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
+        ndk {
+            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+        }
         externalNativeBuild {
             cmake {
-                arguments "-DCMAKE_ANDROID_API=26 -D__ANDROID_API__=26 -DANDROID_DEPRECATED_HEADERS=ON"
-                cppFlags "-std=c++14"
+                cppFlags ""
                 targets "gameplay"
             }
         }
@@ -40,17 +41,18 @@ android {
     }
     externalNativeBuild {
         cmake {
-            version "3.22.1"
+            version "3.21.0"
             path "src/main/cpp/CMakeLists.txt"
 
         }
     }
-    compileSdk 29
-    buildToolsVersion '33.0.2'
+    compileSdkVersion 23
+    buildToolsVersion '30.0.2'
 
 }
 
 dependencies {
+
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     testImplementation 'junit:junit:4.+'

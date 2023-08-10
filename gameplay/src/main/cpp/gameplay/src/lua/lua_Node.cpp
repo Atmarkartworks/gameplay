@@ -1193,7 +1193,6 @@ static int lua_Node_getAnimationPropertyValue(lua_State* state)
 
 static int lua_Node_getAudioSource(lua_State* state)
 {
-#if 0
     // Get the number of parameters.
     int paramCount = lua_gettop(state);
 
@@ -1233,7 +1232,6 @@ static int lua_Node_getAudioSource(lua_State* state)
             break;
         }
     }
-#endif
     return 0;
 }
 
@@ -4802,7 +4800,6 @@ static int lua_Node_setAnimationPropertyValue(lua_State* state)
 
 static int lua_Node_setAudioSource(lua_State* state)
 {
-#if 0
     // Get the number of parameters.
     int paramCount = lua_gettop(state);
 
@@ -4840,7 +4837,6 @@ static int lua_Node_setAudioSource(lua_State* state)
             break;
         }
     }
-#endif
     return 0;
 }
 
@@ -6953,7 +6949,7 @@ void luaRegister_Node()
         {"getAnimation", lua_Node_getAnimation},
         {"getAnimationPropertyComponentCount", lua_Node_getAnimationPropertyComponentCount},
         {"getAnimationPropertyValue", lua_Node_getAnimationPropertyValue},
-//        {"getAudioSource", lua_Node_getAudioSource},
+        {"getAudioSource", lua_Node_getAudioSource},
         {"getBackVector", lua_Node_getBackVector},
         {"getBoundingSphere", lua_Node_getBoundingSphere},
         {"getCamera", lua_Node_getCamera},
@@ -7027,7 +7023,7 @@ void luaRegister_Node()
         {"set", lua_Node_set},
         {"setAgent", lua_Node_setAgent},
         {"setAnimationPropertyValue", lua_Node_setAnimationPropertyValue},
-//        {"setAudioSource", lua_Node_setAudioSource},
+        {"setAudioSource", lua_Node_setAudioSource},
         {"setCamera", lua_Node_setCamera},
         {"setCollisionObject", lua_Node_setCollisionObject},
         {"setDrawable", lua_Node_setDrawable},

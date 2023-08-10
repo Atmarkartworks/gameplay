@@ -4,7 +4,7 @@
 #include "lua_Global.h"
 #include "AIMessage.h"
 #include "AnimationClip.h"
-//#include "AudioSource.h"
+#include "AudioSource.h"
 #include "Camera.h"
 #include "Container.h"
 #include "Control.h"
@@ -68,17 +68,17 @@ void luaRegister_lua_Global()
     setHierarchyPair("AnimationTarget", "Sprite");
     setHierarchyPair("AnimationTarget", "Text");
     setHierarchyPair("AnimationTarget", "Transform");
-//    setHierarchyPair("AudioBuffer", "Ref");
-//    setHierarchyPair("AudioListener", "Camera::Listener");
-//    setHierarchyPair("AudioSource", "Ref");
-//    setHierarchyPair("AudioSource", "Transform::Listener");
+    setHierarchyPair("AudioBuffer", "Ref");
+    setHierarchyPair("AudioListener", "Camera::Listener");
+    setHierarchyPair("AudioSource", "Ref");
+    setHierarchyPair("AudioSource", "Transform::Listener");
     setHierarchyPair("Bundle", "Ref");
     setHierarchyPair("Button", "CheckBox");
     setHierarchyPair("Button", "Label");
     setHierarchyPair("Button", "RadioButton");
     setHierarchyPair("Camera", "Ref");
     setHierarchyPair("Camera", "Transform::Listener");
-//    setHierarchyPair("Camera::Listener", "AudioListener");
+    setHierarchyPair("Camera::Listener", "AudioListener");
     setHierarchyPair("Camera::Listener", "TerrainPatch");
     setHierarchyPair("CheckBox", "Button");
     setHierarchyPair("Container", "Control");
@@ -161,8 +161,8 @@ void luaRegister_lua_Global()
     setHierarchyPair("Ref", "AIState");
     setHierarchyPair("Ref", "Animation");
     setHierarchyPair("Ref", "AnimationClip");
-//    setHierarchyPair("Ref", "AudioBuffer");
-//    setHierarchyPair("Ref", "AudioSource");
+    setHierarchyPair("Ref", "AudioBuffer");
+    setHierarchyPair("Ref", "AudioSource");
     setHierarchyPair("Ref", "Bundle");
     setHierarchyPair("Ref", "Camera");
     setHierarchyPair("Ref", "Control");
@@ -229,7 +229,7 @@ void luaRegister_lua_Global()
     setHierarchyPair("Transform", "AnimationTarget");
     setHierarchyPair("Transform", "Node");
     setHierarchyPair("Transform", "ScriptTarget");
-//    setHierarchyPair("Transform::Listener", "AudioSource");
+    setHierarchyPair("Transform::Listener", "AudioSource");
     setHierarchyPair("Transform::Listener", "Camera");
     setHierarchyPair("Transform::Listener", "MeshSkin");
     setHierarchyPair("Transform::Listener", "PhysicsGhostObject");
@@ -260,7 +260,7 @@ void luaRegister_lua_Global()
         gameplay::ScriptUtil::registerEnumValue(AnimationClip::Listener::END, "END", scopePath);
         gameplay::ScriptUtil::registerEnumValue(AnimationClip::Listener::TIME, "TIME", scopePath);
     }
-#if 0
+
     // Register enumeration AudioSource::State.
     {
         std::vector<std::string> scopePath;
@@ -270,7 +270,7 @@ void luaRegister_lua_Global()
         gameplay::ScriptUtil::registerEnumValue(AudioSource::PAUSED, "PAUSED", scopePath);
         gameplay::ScriptUtil::registerEnumValue(AudioSource::STOPPED, "STOPPED", scopePath);
     }
-#endif
+
     // Register enumeration Camera::Type.
     {
         std::vector<std::string> scopePath;

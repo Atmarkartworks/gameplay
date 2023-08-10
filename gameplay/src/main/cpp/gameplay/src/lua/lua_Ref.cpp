@@ -7,8 +7,8 @@
 #include "AbsoluteLayout.h"
 #include "Animation.h"
 #include "AnimationClip.h"
-//#include "AudioBuffer.h"
-//#include "AudioSource.h"
+#include "AudioBuffer.h"
+#include "AudioSource.h"
 #include "Base.h"
 #include "Bundle.h"
 #include "Button.h"
@@ -228,7 +228,6 @@ static void* __convertTo(void* ptr, const char* typeName)
     {
         return reinterpret_cast<void*>(static_cast<AnimationClip*>(ptrObject));
     }
-#if 0
     else if (strcmp(typeName, "AudioBuffer") == 0)
     {
         return reinterpret_cast<void*>(static_cast<AudioBuffer*>(ptrObject));
@@ -237,7 +236,6 @@ static void* __convertTo(void* ptr, const char* typeName)
     {
         return reinterpret_cast<void*>(static_cast<AudioSource*>(ptrObject));
     }
-#endif
     else if (strcmp(typeName, "Bundle") == 0)
     {
         return reinterpret_cast<void*>(static_cast<Bundle*>(ptrObject));

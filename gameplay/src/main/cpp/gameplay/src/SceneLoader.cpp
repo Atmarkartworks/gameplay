@@ -1,5 +1,5 @@
 #include "Base.h"
-//#include "AudioSource.h"
+#include "AudioSource.h"
 #include "Game.h"
 #include "Bundle.h"
 #include "SceneLoader.h"
@@ -87,8 +87,8 @@ Scene* SceneLoader::loadInternal(const char* url)
     // processing physics collision objects.
     applyNodeUrls();
     applyNodeProperties(sceneProperties, 
-        SceneNodeProperty::AUDIO |
-        SceneNodeProperty::MATERIAL |
+        SceneNodeProperty::AUDIO | 
+        SceneNodeProperty::MATERIAL | 
         SceneNodeProperty::PARTICLE |
         SceneNodeProperty::TERRAIN |
         SceneNodeProperty::LIGHT |
@@ -275,11 +275,9 @@ void SceneLoader::applyNodeProperty(SceneNode& sceneNode, Node* node, const Prop
         {
         case SceneNodeProperty::AUDIO:
         {
-#if 0
             AudioSource* audioSource = AudioSource::create(p);
             node->setAudioSource(audioSource);
             SAFE_RELEASE(audioSource);
-#endif
             break;
         }
         case SceneNodeProperty::MATERIAL:

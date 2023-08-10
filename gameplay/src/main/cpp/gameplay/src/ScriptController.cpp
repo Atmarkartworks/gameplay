@@ -1600,32 +1600,6 @@ void ScriptUtil::registerEnumValue(int enumValue, const std::string& enumValueSt
 {
     ScriptController* sc = Game::getInstance()->getScriptController();
 
-#if 0
-	//std::vector<std::string> names(enumValueString[0]);
-	//std::vector<std::string> values;
-
-
-
-	std::vector<std::string>::const_iterator ienum = scopePath.begin();
-   std::cout << "---- Debug : enumValueString : ";
-std::cout << enumValueString << std::endl;
-
-   std::cout << "---- Debug : scopePath : ";
-
- while(ienum != scopePath.end()){
-   std::string name = *ienum;
-   std::cout <<  name;
-
-   ienum++;
-   if(ienum == scopePath.end())
-   break;
-   
- }
- std::cout << std::endl;
-
-#endif
-
-
     // If the constant is within a scope, get the correct parent 
     // table on the stack before setting its value.
     if (!scopePath.empty())

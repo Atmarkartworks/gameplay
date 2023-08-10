@@ -21,10 +21,10 @@ void lua_RegisterAllBindings()
     luaRegister_AnimationController();
     luaRegister_AnimationTarget();
     luaRegister_AnimationValue();
-//    luaRegister_AudioBuffer();
-//    luaRegister_AudioController();
-//    luaRegister_AudioListener();
-//    luaRegister_AudioSource();
+    luaRegister_AudioBuffer();
+    luaRegister_AudioController();
+    luaRegister_AudioListener();
+    luaRegister_AudioSource();
     luaRegister_BoundingBox();
     luaRegister_BoundingSphere();
     luaRegister_Bundle();
