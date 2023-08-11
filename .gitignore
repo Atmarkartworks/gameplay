@@ -1,3 +1,4 @@
+.gradle/
 build/
 .cxx/
 .idea/
@@ -5,6 +6,11 @@ gradle/
 jniLibs/
 libgameplay.a
 CMakefile/
+*.o
+*.so
+*.a
+*.bin
+*.lock
 *.suo
 *.sdf
 *.opensdf
