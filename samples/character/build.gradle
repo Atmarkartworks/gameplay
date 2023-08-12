@@ -14,13 +14,7 @@ android {
         versionName "1.0"
 
 
-        externalNativeBuild {
-            cmake {
-                arguments '-DANDROID_TOOLCHAIN=clang',
-                        '-DANDROID_STL=c++_static'
-                cppFlags "-std=c++11"
-            }
-        }
+
     }
     buildTypes {
         release {
@@ -30,9 +24,10 @@ android {
         }
     }
     externalNativeBuild {
-        cmake {
-            version '3.22.1'
-            path 'src/main/cpp/CMakeLists.txt'
+        ndkBuild {
+            //version '3.22.1'
+            //path 'src/main/cpp/CMakeLists.txt'
+            path 'android/jni/Android.mk'
         }
     }
     buildToolsVersion '33.0.2'

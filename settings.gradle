@@ -1,4 +1,4 @@
 include ':gameplay'
-//include ':samples:character'
+include ':samples:character'
 include ':samples:browser'
 

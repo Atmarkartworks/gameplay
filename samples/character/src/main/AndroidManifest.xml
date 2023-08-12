@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BEGIN_INCLUDE(manifest) -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.native_activity"
-          android:versionCode="1"
-          android:versionName="1.0">
+    package="org.gameplay3d.sample_character"
+    android:versionCode="1"
+    android:versionName="1.0">
 
-  <!-- Tell the system this app requires OpenGL ES 2.0. -->
-  <uses-feature android:glEsVersion="0x00020000" android:required="true" />
-
-  <supports-gl-texture android:name="GL_OES_compressed_ETC1_RGB8_texture" />
-  <supports-gl-texture android:name="GL_OES_compressed_paletted_texture" />
-  <supports-gl-texture android:name="GL_OES_map_buffer" />
-
+  <uses-sdk android:minSdkVersion="16" />
+  <uses-feature android:glEsVersion="0x00020000"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-  <!-- This .apk has no Java code itself, so set hasCode to false. -->
-  <application
-      android:allowBackup="false"
-      android:fullBackupContent="false"
-      android:supportsRtl="true"
-      android:icon="@mipmap/icon"
-      android:label="@string/app_name"
-      android:hasCode="true">
-
-    <!-- Our activity is the built-in NativeActivity framework class.
-         This will take care of integrating with our NDK code. -->
+  <application android:icon="@drawable/icon" android:label="@string/app_name" android:hasCode="true">
     <activity android:name="android.app.NativeActivity"
-              android:label="@string/app_name"
-              android:configChanges="orientation|keyboardHidden">
-      <!-- Tell NativeActivity the name of our .so -->
-      <meta-data android:name="android.app.lib_name"
-                 android:value="native-activity" />
+        android:label="@string/app_name"
+        android:configChanges="orientation|screenSize|keyboardHidden"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+        android:screenOrientation="landscape">
+      <meta-data android:name="android.app.lib_name" android:value="sample-character" />
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -38,5 +22,4 @@
     </activity>
   </application>
 
-</manifest>
-<!-- END_INCLUDE(manifest) -->
+</manifest> 
